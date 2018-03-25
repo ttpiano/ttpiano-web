@@ -4,7 +4,13 @@ const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
   async index() {
-    await this.ctx.render('index.ejs');
+  	const lastestNews = await this.ctx.model.Page.find().sort({
+			pubTime: -1,
+		}).limit(20);
+
+    await this.ctx.render('index.ejs', {
+			lastestNews,
+		});
   }
 }
 

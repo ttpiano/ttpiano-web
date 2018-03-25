@@ -10,12 +10,15 @@ const Crawler = require('crawler');
 
 module.exports = {
   schedule: {
-    interval: '10s',
+    interval: '6h',
     type: 'worker', // 指定所有的 worker 都需要执行
 		immediate: true,
   },
   async task(ctx) {
-    ctx.logger.info('start task:crawler');
+    ctx.logger.info('task:crawler starting');
 
+    await ctx.service.crawler.directAndSave2DB();
+
+		ctx.logger.info('task:crawler completed');
   },
 };

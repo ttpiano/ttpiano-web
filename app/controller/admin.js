@@ -21,6 +21,12 @@ class AdminController extends Controller {
 
 		this.ctx.body = ret;
 	}
+
+	async empty() {
+		const ret = await this.ctx.model.Page.drop();
+
+		this.ctx.body = ret;
+	}
 }
 
 module.exports = AdminController;
